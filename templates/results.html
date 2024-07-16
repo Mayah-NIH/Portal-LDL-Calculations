@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Results</h1>
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Patient ID</th>
+                    {% if unit == 'mg/dl' %}
+                        <th>SLDLC</th>
+                        <th>eS_LDL</th>
+                        <th>m3SLDLC</th>
+                        <th>FLDLC</th>
+                        <th>MLDLC</th>
+                    {% elif unit == 'mmol/l' %}
+                        <th>SLDLC_mmol</th>
+                        <th>eS_LDL_mmol</th>
+                        <th>m3SLDLC_mmol</th>
+                        <th>FLDLC_mmol</th>
+                        <th>MLDLC_mmol</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.PatientID }}</td>
+                    {% if unit == 'mg/dl' %}
+                        <td>{{ result.SLDLC }}</td>
+                        <td>{{ result.eS_LDL }}</td>
+                        <td>{{ result.m3SLDLC }}</td>
+                        <td>{{ result.FLDLC }}</td>
+                        <td>{{ result.MLDLC }}</td>
+                    {% elif unit == 'mmol/l' %}
+                        <td>{{ result.SLDLC_mmol }}</td>
+                        <td>{{ result.eS_LDL_mmol }}</td>
+                        <td>{{ result.m3SLDLC_mmol }}</td>
+                        <td>{{ result.FLDLC_mmol }}</td>
+                        <td>{{ result.MLDLC_mmol }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
